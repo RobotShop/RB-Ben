@@ -26,7 +26,7 @@ void setup()
 void loop()
 {
   // Check if at least 9 bytes are available
-  if (Serial1.available()> = 9)
+  if (Serial1.available() >= 9)
   {
     // Check for first header byte
 	if(Serial1.read() == HEADER)
@@ -43,16 +43,16 @@ void loop()
         f = Serial1.read();
         
 		// Read checksum byte
-		check = a + b + c + d + e + f + HEADER + HEADER;
+		check = (a + b + c + d + e + f + HEADER + HEADER);
         
 		// Compare lower 8 bytes of checksum
 		if(Serial1.read() == (check & 0xff))
         {
           // Calculate distance
-		  dist = a + b * 256;
+		  dist = (a + (b * 256));
           
 		  // Calculate signal strength
-		  strength = c + d * 256;
+		  strength = (c + (d * 256));
           
 		  // Display results to USB serial port
 		  Serial.print("dist = ");
